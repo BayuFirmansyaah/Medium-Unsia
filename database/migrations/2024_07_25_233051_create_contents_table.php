@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('slug')->unique();
-            $table->string('status')->default('draft');
-            $table->string('type')->default('post');
-            $table->string('comment_status')->default('open');
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->enum('type',['post'])->default('post');
+            $table->enum('comment_status', ['open','closed'])->default('open');
             $table->string('image')->nullable();
             $table->timestamps();
         });
