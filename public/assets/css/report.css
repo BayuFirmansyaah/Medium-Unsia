@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'bookman_oldstyle';
+    src: url('../fonts/bookmand_oldstyle/bookmanoldstyle_bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'bookman_oldstyle';
+    src: url('../fonts/bookmand_oldstyle/bookmanoldstyle.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'bookman_oldstyle';
+}
+
+.kop_header p {
+    font-family: 'bookman_oldstyle';
+    font-weight: normal;
+}
+
+body{
+    font-size: 11pt;
+}
