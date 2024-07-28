@@ -51,7 +51,7 @@ class ContentController extends Controller
 
         Content::create($content);
 
-        Alert::success('Success', 'Content has been saved');
+        Alert::success('Success', 'Postingan berhasil ditambahkan');
 
         return redirect()->route('admin.content.index');
     }
@@ -85,6 +85,15 @@ class ContentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $content = Content::findOrFail($id);
+            $content->delete();
+
+            Alert::success('Success', 'Postingan berhasil dihapus');
+        }catch(\Exception $e){
+            Alert::error('Error', 'Postingan gagal dihapus karena sudah terhubung dengan data lain');
+        }
+
+        return redirect()->route('admin.content.index');
     }
 }
