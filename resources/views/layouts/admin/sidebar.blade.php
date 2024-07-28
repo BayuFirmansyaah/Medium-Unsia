@@ -4,7 +4,7 @@
             'name' => 'dashboard',
             'icon' => 'bx bx-home-circle',
             'route' => route('admin.dashboard'),
-            'role' => ['admin', 'user'],
+            'role' => ['admin'],
         ],
         [
             'label' => 'Menu Utama',
@@ -13,14 +13,14 @@
         [
             'name' => 'Pengguna',
             'icon' => 'bx bx-user',
-            'route' => null,
+            'route' => route('admin.user.index'),
             'role' => ['admin'],
         ],
         [
             'name' => 'Artikel',
             'icon' => 'bx bx-news',
-            'route' => null,
-            'role' => ['admin', 'user'],
+            'route' => route('admin.content.index'),
+            'role' => ['admin'],
         ],
         [
             'name' => 'Komentar',

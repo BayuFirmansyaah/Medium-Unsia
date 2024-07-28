@@ -63,11 +63,14 @@
         .hidden{
             display: none;
         }
+
+        .min-full{
+            min-height: 600px;
+        }
     </style>
 </head>
 
 <body>
-
 
     @if (isset($layout) && $layout == false)
         @yield('content')
