@@ -34,7 +34,7 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Content::rules());
+        $request->validate(Content::rulesStore());
 
         $slug = str_replace(' ', '-', strtolower($request->title));
         $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
@@ -69,7 +69,9 @@ class ContentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.content.form', [
+            'content' => Content::findOrFail($id),
+        ]);
     }
 
     /**
@@ -77,7 +79,30 @@ class ContentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(Content::rulesUpdate());
+
+        $content = Content::findOrFail($id);
+
+        $slug = str_replace(' ', '-', strtolower($request->title));
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
+        $slug = preg_replace('/-+/', '-', $slug);
+
+        $image = $content->image;
+        if($request->hasFile('image')){
+            $image = $this->upload($request->file('image'));
+        }
+
+        $content->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'slug' => $slug,
+            'image' => $image,
+            'status' => $request->status,
+        ]);
+
+        Alert::success('Success', 'Postingan berhasil diperbarui');
+
+        return redirect()->route('admin.content.index');
     }
 
     /**

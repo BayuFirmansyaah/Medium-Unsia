@@ -15,7 +15,7 @@ class Content extends Model
         'updated_at',
     ];
 
-    public static function rules(): array
+    public static function rulesStore(): array
     {
         return [
             'title' => 'required|string|max:255',
@@ -23,6 +23,16 @@ class Content extends Model
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
+
+    public static function rulesUpdate(): array
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|in:draft,published'
+        ];
+    } 
 
     public function author()
     {
