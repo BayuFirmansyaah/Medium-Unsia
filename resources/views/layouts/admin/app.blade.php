@@ -71,6 +71,8 @@
 
 <body>
 
+    @include('sweetalert::alert')
+
     @if (isset($layout) && $layout == false)
         @yield('content')
     @else
