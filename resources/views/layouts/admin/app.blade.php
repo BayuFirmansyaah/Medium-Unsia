@@ -56,7 +56,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
-    <script src="{{ asset('assets/js/sweetAlert2-all-min.js') }}"></script>
     <script src="{{ asset('assets/js/ckeditor5.js') }}"></script>
 
     <style>
@@ -119,6 +118,8 @@
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 
     {{-- if elemet with class delete item on click show alert when true send form --}}
+    
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script>
         $('.delete-item').on('click', function(e) {
             e.preventDefault();
@@ -144,9 +145,8 @@
             placeholder: "Pilih...",
             allowClear: true
         });
-        });
+    });
     </script>
-
     @livewireScripts
 </body>
 

@@ -18,14 +18,19 @@ class Content extends Model
     public static function rules(): array
     {
         return [
-            'author_id' => 'required|exists:users,id',
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'slug' => 'required|string|unique:contents',
-            'status' => 'required|string|in:draft,published',
-            'type' => 'required|string|in:post',
-            'comment_status' => 'required|string|in:open,closed',
-            'image' => 'nullable|image',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'content_id');
     }
 }

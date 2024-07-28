@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->enum('type',['post'])->default('post');
+            $table->integer('view_count')->default(0);
             $table->enum('comment_status', ['open','closed'])->default('open');
             $table->string('image')->nullable();
             $table->timestamps();
