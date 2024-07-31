@@ -18,23 +18,53 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Role</th>
+                                <th>Dibuat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Admin</td>
-                                <td>admin@example.com</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a href="{{ route('admin.user.edit', 1) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="{{ route('admin.user.destroy', 1) }}" class="btn btn-danger btn-sm">Hapus</a>
-                                </td>
-                            </tr>
+                            @if($users->count() > 0)
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ date('d M Y', strtotime($user->created_at)) }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="dropdown-item">
+                                                        <i class="bx bx-edit-alt me-1"></i> Edit
+                                                    </a>
+                                                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="dropdown-item delete-item"><i
+                                                            class="bx bx-trash me-1"></i> Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
+                    <div class="container-fluid">
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-end">
+                                {{ $users->links() }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

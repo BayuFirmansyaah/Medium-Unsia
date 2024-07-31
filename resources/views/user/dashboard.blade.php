@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <h6 class="text-nowrap mb-1">Total Pengunjung Harian</h6>
+                        <h6 class="text-nowrap mb-1">Total Pengunjung</h6>
                     </div>
                 </div>
                 <div class="card-body">

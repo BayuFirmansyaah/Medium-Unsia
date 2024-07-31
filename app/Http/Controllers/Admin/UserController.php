@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -12,7 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+        $users = User::orderBy('id', 'asc')->paginate(20);
+
+        return view('admin.user.index', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -28,7 +35,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        # use spa
+        $request->validate(User::rules());
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole($request->role);
+
+        Alert::Success('Success', 'Berhasil menambahkan user');
+
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -44,7 +63,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.user.form', [
+            'user' => User::findOrFail($id),
+        ]);
     }
 
     /**
@@ -60,6 +81,15 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            Alert::Success('Success', 'Berhasil menghapus user');
+        } catch (\Exception $e) {
+            Alert::Error('Error', 'Gagal menghapus user');
+        }
+
+        return redirect()->route('admin.user.index');
     }
 }
