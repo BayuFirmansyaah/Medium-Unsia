@@ -9,15 +9,18 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $contents = Content::where('status', 'published')->orderBy('id', 'desc')->get();
+        return view('home', [
+            'contents' => $contents,
+        ]);
     }
     
     public function show($id){
         $content = Content::findOrFail($id);
+        $content->load('author');
 
-        $content->update([
-            'view' => $content->view + 1
-        ]);
+        $content->view_count = $content->view_count + 1;
+        $content->save();        
 
         return view('article', compact('content'));
     }

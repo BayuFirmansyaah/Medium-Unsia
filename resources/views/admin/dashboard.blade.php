@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-body">
                     <div class="mt-sm-auto">
-                        <h3 class="mb-0">7,9K</h3>
+                        <h3 class="mb-0">{{ $sumViewCount }}</h3>
                     </div>
                 </div>
             </div>

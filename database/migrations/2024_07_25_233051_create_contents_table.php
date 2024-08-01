@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('content');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->enum('type',['post'])->default('post');
             $table->integer('view_count')->default(0);

@@ -25,7 +25,7 @@ class ContentController extends Controller
      */
     public function create()
     {
-        return view('user.content.create');
+        return view('user.content.form');
     }
 
     /**
@@ -68,7 +68,7 @@ class ContentController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.content.form', [
+        return view('user.content.form', [
             'content' => Content::findOrFail($id),
         ]);
     }

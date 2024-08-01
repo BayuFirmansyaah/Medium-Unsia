@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.header {
+    background-color: #8b949c;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.header .display-4 {
+    font-weight: 700;
+}
+
+.header .lead {
+    font-size: 1.25rem;
+    color: #6c757d;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 20px 0;
+}
+
+blockquote-footer {
+    font-size: 0.875rem;
+    color: #777;
+    text-align: right;
+}
+
+/* Add the following styles */
+.card {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
