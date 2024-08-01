@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ContentController as AdminContentController;
 
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\User\ContentController as UserContentController;
 
 Route::get('/', function () {
    
@@ -36,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('/', [UserDashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('content', UserContentController::class);
     });
 
 });

@@ -80,7 +80,7 @@
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
                 <!-- Menu -->
-                @include('layouts.admin.sidebar')
+                @include('layouts.user.sidebar')
                 <!-- / Menu -->
 
                 <!-- Layout container -->

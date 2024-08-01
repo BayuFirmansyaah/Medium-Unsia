@@ -3,31 +3,19 @@
         [
             'name' => 'dashboard',
             'icon' => 'bx bx-home-circle',
-            'route' => route('admin.dashboard'),
-            'role' => ['admin'],
+            'route' => route('user.dashboard'),
+            'role' => null
         ],
         [
             'label' => 'Menu Utama',
             'separator' => true,
         ],
         [
-            'name' => 'Pengguna',
-            'icon' => 'bx bx-user',
-            'route' => route('admin.user.index'),
-            'role' => ['admin'],
-        ],
-        [
             'name' => 'Artikel',
             'icon' => 'bx bx-news',
-            'route' => route('admin.content.index'),
-            'role' => ['admin'],
+            'route' => route('user.content.index'),
+            'role' => null
         ],
-        // [
-        //     'name' => 'Komentar',
-        //     'icon' => 'bx bx-message-square-detail',
-        //     'route' => null,
-        //     'role' => ['admin'],
-        // ],
         [
             'label' => 'Lainnya',
             'separator' => true,
@@ -36,7 +24,7 @@
             'name' => 'Keluar',
             'icon' => 'bx bx-log-out',
             'route' => route('logout'),
-            'role' => ['admin', 'user'],
+            'role' => null,
         ]
 
     ];
