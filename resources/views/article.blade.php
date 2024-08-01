@@ -20,12 +20,27 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
+                    @if(Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        </li>
+                        @if(Auth::user()->role == 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">Dashboard</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -34,20 +49,50 @@
     <!-- Content -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12">
-                <img src="{{ asset($content->image) }}" alt="" style="height:500px;" class="mb-4">
+            <div class="col-7">
+                <img src="{{ asset($content->image) }}" alt="" style="width:100%" class="mb-4">
                 <h3>{{ $content->title }}</h3>
                 <p>Penulis : {{ $content->author->name }}</p>
-                <p>Dibuat : {{ $content->created_at->format('d F Y H:i') }}</p>
+                <p>Dibuat : {{ $content->created_at->diffForHumans()}}</p>
 
                 @php
-                    $content = $content->content;
-                    $content = explode("\n", $content);
+                    $content_desc = explode("\n", $content->content);
                 @endphp
 
-                @foreach ($content as $c)
+                @foreach ($content_desc as $c)
                     <p>{{ $c }}</p>
                 @endforeach
+            </div>
+
+            <div class="col-5">
+                {{-- make commentar input --}}
+                <form action="" method="POST">
+                    @csrf
+                    <input type="hidden" name="content_id" value="{{ $content->id}}">
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    @error('comment')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </form>
+
+                {{-- show comments --}}
+                <div class="mt-5">
+                    <h4>Comments</h4>
+                    @foreach ($content->comments as $comment)
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $comment->author->name }}</h5>
+                                <p class="card-text">{{ $comment->comment }}</p>
+                                <p class="card-text"><small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small></p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
         

@@ -66,30 +66,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Belajar Laravel</td>
-                                <td>Admin</td>
-                                <td>100</td>
-                                <td>10</td>
-                                <td>2021-10-10</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Belajar PHP</td>
-                                <td>Admin</td>
-                                <td>200</td>
-                                <td>20</td>
-                                <td>2021-10-10</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Belajar Vue Js</td>
-                                <td>Admin</td>
-                                <td>300</td>
-                                <td>30</td>
-                                <td>2021-10-10</td>
-                            </tr>
+                            @foreach ($contents as $key => $content)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $content->title }}</td>
+                                    <td>{{ $content->author->name }}</td>
+                                    <td>{{ $content->view_count }}</td>
+                                    <td>{{ $content->comments->count() }}</td>
+                                    <td>{{ $content->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

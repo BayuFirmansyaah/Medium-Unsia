@@ -40,8 +40,8 @@
                         <img src="{{ asset($content->image) }}" class="card-img-top" alt="Post Image" style="height: 300px;object-fit:cover;object-positon:center;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $content->title }}</h5>
-                            <p class="card-text">
-                                {{ Str::limit($content->content, 100) }}
+                            <p class="card-text" style="height: 50px;overflow:hidden">
+                                {{$content->content}}
                             </p>
                             <a href="{{ route('article', $content->id) }}" class="btn btn-primary">Read More</a>
                         </div>

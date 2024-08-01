@@ -23,4 +23,9 @@ class Comment extends Model
             'content' => 'required|string',
         ];
     }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

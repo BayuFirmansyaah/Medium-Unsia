@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\CommentFactory;
+use Database\Factories\ContentFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
 
     
         $roleUser = Role::create(['name' => 'user']);
@@ -36,5 +37,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole($roleUser);
+
+        ContentFactory::new()->count(20)->create();
+        CommentFactory::new()->count(50)->create();
     }
 }
