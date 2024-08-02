@@ -27,7 +27,8 @@ class HomeController extends Controller
 
     public function comment(Request $request, $id){
         $content = Content::findOrFail($id);
-
+        $content->load('author');
+        
         if(auth()->id()){
             $content->comments()->create([
                 'content_id' => $content->id,

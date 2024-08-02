@@ -15,6 +15,7 @@ class ContentController extends Controller
     public function index()
     {
         $contents = Content::where('author_id', auth()->user()->id)->paginate(20);
+        $contents->load('author');
         return view('user.content.index', [
             'contents' => $contents,
         ]);

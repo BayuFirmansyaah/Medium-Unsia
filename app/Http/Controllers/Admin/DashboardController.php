@@ -13,6 +13,7 @@ class DashboardController extends Controller
         $countContent = Content::count();
         $sumViewCount = Content::sum('view_count');
         $contents = Content::orderBy('view_count', 'desc')->limit(10)->get();
+        $contents->load('author');
 
         return view('admin.dashboard', [
             'countContent' => $countContent,

@@ -13,6 +13,7 @@ class DashboardController extends Controller
         $countContent = Content::where('author_id', auth()->user()->id)->count();
         $sumViewCount = Content::where('author_id', auth()->user()->id)->sum('view_count');
         $contents = Content::where('author_id', auth()->user()->id)->orderBy('view_count', 'desc')->limit(10)->get();
+        $contents->load('author');
 
         return view('user.dashboard', [
             'countContent' => $countContent,

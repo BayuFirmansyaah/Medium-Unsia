@@ -60,6 +60,7 @@
                                 <th>No</th>
                                 <th>Judul</th>
                                 <th>Dilihat</th>
+                                <th>Penulis</th>
                                 <th>Komentar</th>
                                 <th>Dibuat</th>
                             </tr>
@@ -71,6 +72,7 @@
                                     <td>{{ $content->title }}</td>
                                     <td>{{ $content->view_count }}</td>
                                     <td>{{ $content->comments->count() }}</td>
+                                    <td>{{ $content->author->name }}</td>
                                     <td>{{ $content->created_at }}</td>
                                 </tr>
                             @endforeach
