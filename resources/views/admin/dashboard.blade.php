@@ -59,7 +59,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
-                                <th>Penulis</th>
                                 <th>Dilihat</th>
                                 <th>Komentar</th>
                                 <th>Dibuat</th>
@@ -70,7 +69,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $content->title }}</td>
-                                    <td>{{ $content->author->name }}</td>
                                     <td>{{ $content->view_count }}</td>
                                     <td>{{ $content->comments->count() }}</td>
                                     <td>{{ $content->created_at }}</td>
