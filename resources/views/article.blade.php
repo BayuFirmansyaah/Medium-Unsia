@@ -55,7 +55,6 @@
             <div class="col-7">
                 <img src="{{ asset($content->image) }}" alt="" style="width:100%" class="mb-4">
                 <h3>{{ $content->title }}</h3>
-                <p>Penulis : {{ $content->author->name }}</p>
                 <p>Dibuat : {{ $content->created_at->diffForHumans() }}</p>
 
                 @php
