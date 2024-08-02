@@ -19,7 +19,6 @@
                                 <th>Judul</th>
                                 <th>Thumbnail</th>
                                 <th>Dilihat</th>
-                                <th>Penulis</th>
                                 <th>Status</th>
                                 <th>Komentar</th>
                                 <th>Dibuat</th>
@@ -36,7 +35,6 @@
                                             <img src="{{ asset($content->image) }}" alt="{{ $content->title }}" class="img-fluid" style="max-width: 80px;">
                                         </td>
                                         <td>{{ $content->view_count }}</td>
-                                        <td>{{ $content->author->name }}</td>
                                         <td>{{ $content->status }}</td>
                                         <td>{{ $content->comments->count() }}</td>
                                         <td>{{ $content->created_at->format('d F Y H:i') }}</td>
