@@ -30,6 +30,7 @@ class HomeController extends Controller
 
         if(auth()->id()){
             $content->comments()->create([
+                'content_id' => $content->id,
                 'content' => $request->content,
                 'user_id' => auth()->id(),
             ]);

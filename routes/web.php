@@ -13,6 +13,7 @@ use App\Http\Controllers\User\ContentController as UserContentController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article/{id}', [HomeController::class, 'show'])->name('article');
+Route::post('/comment/{id}', [HomeController::class, 'comment'])->name('comment');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');

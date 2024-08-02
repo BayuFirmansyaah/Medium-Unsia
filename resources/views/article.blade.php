@@ -69,12 +69,12 @@
 
             <div class="col-5">
                 {{-- make commentar input --}}
-                <form action="" method="POST">
+                <form action="{{ route('comment', $content->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="content_id" value="{{ $content->id }}">
+                    <input type="hidden" name="content_id">
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                        <textarea class="form-control" id="comment" name="content" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -90,7 +90,7 @@
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $comment->author->name }}</h5>
-                                <p class="card-text">{{ $comment->comment }}</p>
+                                <p class="card-text">{{ $comment->content }}</p>
                                 <p class="card-text"><small
                                         class="text-muted">{{ $comment->created_at->diffForHumans() }}</small></p>
                             </div>
