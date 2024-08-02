@@ -24,4 +24,19 @@ class HomeController extends Controller
 
         return view('article', compact('content'));
     }
+
+    public function comment(Request $request, $id){
+        $content = Content::findOrFail($id);
+
+        if(auth()->id()){
+            $content->comments()->create([
+                'content' => $request->content,
+                'user_id' => auth()->id(),
+            ]);
+
+            return redirect()->back()->with('success', 'Comment added');
+        }
+
+        return redirect()->back()->with('error', 'You need to login to comment');
+    }
 }

@@ -41,7 +41,8 @@
                     <div class="row gy-3 gy-md-4 overflow-hidden">
                         <div class="col-12">
                             <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name"
+                                required>
                         </div>
                         <div class="col-12">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
@@ -71,6 +72,39 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success') || session('error'))
+        @php
+            $title = session('success') ? 'success' : 'error';
+            $message = session('success') ? session('success') : session('error');
+        @endphp
+
+        <script>
+            Swal.fire({
+                title: '{{ ucfirst($title) }}',
+                text: "{{ $message }}",
+                icon: '{{ $title }}',
+                confirmButtonColor: '#435ebe',
+                confirmButtonText: 'Done',
+                onConfirm: function() {
+                    window.location.href = "{{ url()->current() }}";
+                }
+            })
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                title: 'error',
+                text: "{{ $errors->first() }}",
+                icon: 'error',
+                confirmButtonColor: '#435ebe',
+                confirmButtonText: 'Done'
+            })
+        </script>
+    @endif
 </body>
 
 </html>
