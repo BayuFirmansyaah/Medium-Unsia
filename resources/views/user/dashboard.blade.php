@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4 mt-3">
+        <div class="col-md-6 mt-3">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 mt-3">
+        <div class="col-md-6 mt-3">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
@@ -28,21 +28,6 @@
                 <div class="card-body">
                     <div class="mt-sm-auto">
                         <h3 class="mb-0">{{ $sumViewCount }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-3">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">
-                        <h6 class="text-nowrap mb-1">Total Aktivitas Komentar</h6>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="mt-sm-auto">
-                        <h3 class="mb-0">1K</h3>
                     </div>
                 </div>
             </div>
